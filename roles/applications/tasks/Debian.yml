@@ -1,0 +1,65 @@
+---
+- name: add key
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  loop:
+    - https://download.docker.com/linux/ubuntu/gpg
+    - https://packagecloud.io/AtomEditor/atom/gpgkey
+
+- name: add repository
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  loop:
+    - "ppa:ansible/ansible"
+    #- "ppa:gnome-terminator"
+    - "deb https://download.docker.com/linux/ubuntu xenial stable"
+    - "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install a list of packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - atom
+    - python
+    - python3
+    - cowsay
+    - htop
+    - ansible
+    - python-pip
+    - python3-pip
+    #- terminator
+    - docker-ce
+
+- name: Download DEB packages
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb', dest: '/opt/packages' }
+    - { url: 'https://github.com/meetfranz/franz/releases/download/v5.1.0/franz_5.1.0_amd64.deb', dest: '/opt/packages' }
+
+- name: Install a .deb package
+  apt:
+    deb:
+  loop:
+    - google-chrome-stable_current_amd64.deb
+    - franz_5.1.0_amd64.deb
+
+- name: install pip modules
+  pip:
+    name: "{{ item }}"
+  loop:
+    - docker
+    - boto
+    - boto3
+    - botocore
