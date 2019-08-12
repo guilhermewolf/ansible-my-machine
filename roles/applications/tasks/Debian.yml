@@ -37,7 +37,7 @@
     - ansible
     - python-pip
     - python3-pip
-    #- terminator
+    - terminator
     - docker-ce
 
 - name: Download DEB packages
@@ -45,12 +45,12 @@
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
   loop:
-    - { url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb', dest: '/opt/packages' }
-    - { url: 'https://github.com/meetfranz/franz/releases/download/v5.1.0/franz_5.1.0_amd64.deb', dest: '/opt/packages' }
+    - { url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb', dest: '/opt/' }
+    - { url: 'https://github.com/meetfranz/franz/releases/download/v5.1.0/franz_5.1.0_amd64.deb', dest: '/opt/' }
 
 - name: Install a .deb package
   apt:
-    deb:
+    deb: /opt/{{ item }}
   loop:
     - google-chrome-stable_current_amd64.deb
     - franz_5.1.0_amd64.deb
