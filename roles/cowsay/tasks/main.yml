@@ -1,0 +1,4 @@
+- name: Download mini cow
+  get_url:
+    url: https://raw.githubusercontent.com/piuccio/cowsay/master/cows/small.cow
+    dest: /usr/share/cowsay/cows
