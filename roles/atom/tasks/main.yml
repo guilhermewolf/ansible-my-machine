@@ -1,0 +1,17 @@
+- name: Install Atom packages
+  shell: "apm install {{ item }}"
+  loop:
+    - atom-beautify
+    - atom-marp
+    - busy-signal
+    - file-icons
+    - git-plus
+    - gitlab-integration
+    - highlight-selected
+    - intentions
+    - linter
+    - linter-ansible-linting
+    - linter-ansible-syntax
+    - linter-json-lint
+    - linter-ui-default
+    #- markdown-preview-enhanced
