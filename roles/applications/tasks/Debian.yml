@@ -39,6 +39,8 @@
     - python3-pip
     - terminator
     - docker-ce
+    - libgnome-keyring-common
+    - hunspell-pt-br
 
 - name: Download DEB packages
   get_url:

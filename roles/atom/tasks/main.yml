@@ -1,4 +1,4 @@
-- name: Install Atom packages
+- name: Install Atom packagesdocker
   shell: "apm install {{ item }}"
   loop:
     - atom-beautify
@@ -14,4 +14,11 @@
     - linter-ansible-syntax
     - linter-json-lint
     - linter-ui-default
+    - linter-terraform-syntax
+    - language-docker
+    - language-jenkinsfile
+    - language-nginx
+    - language-terraform
+    - platformio-ide-terminal
+    - remote-editor
     #- markdown-preview-enhanced
